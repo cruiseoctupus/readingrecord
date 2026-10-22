@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>个人生涯阅读档案表</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="quote">
+    <p>“阅读是一座随身携带的避难所。”</p>
+    <span>"To acquire the habit of reading is to construct for yourself a refuge from almost all the miseries of life."</span>
+    <i></i>
+  </header>
+
+  <main class="sheet">
+    <h1 contenteditable="true" title="点击可修改标题">个人生涯阅读档案表</h1>
+    <p class="author">作者：<span contenteditable="true" title="点击修改作者">（点击修改）</span></p>
+
+    <section id="card-grid" class="card-grid" aria-label="阅读项目"></section>
+
+    <footer>
+      <button id="export-btn" type="button">导出备份</button>
+      <label class="import-button" for="import-file">导入备份</label>
+      <input id="import-file" type="file" accept=".json,application/json" />
+      <button id="reset-btn" type="button" class="subtle">清空所有记录</button>
+      <button onclick="saveAsImage()">保存为图片</button>
+      <p>内容自动保存在当前浏览器中。建议定期导出备份。</p>
+    </footer>
+  </main>
+
+  <dialog id="edit-dialog">
+    <form id="edit-form" method="dialog">
+      <div class="dialog-head">
+        <h2 id="dialog-title">编辑阅读记录</h2>
+        <button class="close-btn" type="button" id="close-dialog" aria-label="关闭">×</button>
+      </div>
+      <label class="field">
+        <span>书名</span>
+        <input id="book-title" name="title" type="text" placeholder="输入书名" maxlength="120" />
+      </label>
+      <label class="field">
+        <span>作者</span>
+        <input id="book-author" name="author" type="text" placeholder="输入作者" maxlength="120" />
+      </label>
+      <label class="field">
+        <span>封面图片</span>
+        <input id="book-image" name="image" type="file" accept="image/*" />
+        <small>可选：上传本地图片。建议使用较小的 JPG 或 PNG 图片。</small>
+      </label>
+      <div class="preview-wrap">
+        <img id="image-preview" alt="封面预览" hidden />
+        <button id="remove-image" class="subtle" type="button">移除封面</button>
+      </div>
+      <label class="field">
+        <span>阅读感想 / 备注</span>
+        <textarea id="book-note" name="note" rows="4" placeholder="记下你为什么选择这本书……" maxlength="1000"></textarea>
+      </label>
+      <div class="dialog-actions">
+        <button id="delete-card" type="button" class="delete-btn">清除此项</button>
+        <button type="submit" class="save-btn">保存</button>
+      </div>
+    </form>
+  </dialog>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
